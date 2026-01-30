@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ECO DO VAZIO: SOBREVIVÊNCIA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- CHARACTER SELECTION -->
+  <div id="character-screen" class="screen">
+    <div class="panel">
+      <h1>ESCOLHA SEU PERSONAGEM</h1>
+      <p class="sub">Cada personagem tem uma arma inicial diferente e forma única</p>
+      
+      <div id="character-cards" class="character-cards">
+        <div class="character-card" data-weapon="plasma">
+          <div class="character-shape plasma-shape"></div>
+          <h3>PLASMA</h3>
+          <p>Arma padrão balanceada</p>
+          <div class="weapon-stats">
+            <span>⚡ Dano: 3</span>
+            <span>🎯 Precisão: Alta</span>
+            <span>💨 Velocidade: Média</span>
+          </div>
+          <button class="select-character" data-weapon="plasma">ESCOLHER</button>
+        </div>
+        
+        <div class="character-card" data-weapon="shotgun">
+          <div class="character-shape shotgun-shape"></div>
+          <h3>ESPINGARDA</h3>
+          <p>Múltiplos projéteis em cone</p>
+          <div class="weapon-stats">
+            <span>⚡ Dano: 2x5</span>
+            <span>🎯 Precisão: Baixa</span>
+            <span>💨 Velocidade: Baixa</span>
+          </div>
+          <button class="select-character" data-weapon="shotgun">ESCOLHER</button>
+        </div>
+        
+        <div class="character-card" data-weapon="laser">
+          <div class="character-shape laser-shape"></div>
+          <h3>LASER</h3>
+          <p>Disparo rápido e preciso</p>
+          <div class="weapon-stats">
+            <span>⚡ Dano: 2</span>
+            <span>🎯 Precisão: Muito Alta</span>
+            <span>💨 Velocidade: Muito Alta</span>
+          </div>
+          <button class="select-character" data-weapon="laser">ESCOLHER</button>
+        </div>
+        
+        <div class="character-card" data-weapon="railgun">
+          <div class="character-shape railgun-shape"></div>
+          <h3>RAILGUN</h3>
+          <p>Tiro perfurante de alto dano</p>
+          <div class="weapon-stats">
+            <span>⚡ Dano: 8</span>
+            <span>🎯 Precisão: Alta</span>
+            <span>💨 Velocidade: Lenta</span>
+          </div>
+          <button class="select-character" data-weapon="railgun">ESCOLHER</button>
+        </div>
+        
+        <div class="character-card" data-weapon="flamethrower">
+          <div class="character-shape flamethrower-shape"></div>
+          <h3>LANÇA-CHAMAS</h3>
+          <p>Dano contínuo em área</p>
+          <div class="weapon-stats">
+            <span>⚡ Dano: 1.5/s</span>
+            <span>🎯 Precisão: Média</span>
+            <span>💨 Velocidade: Rápida</span>
+          </div>
+          <button class="select-character" data-weapon="flamethrower">ESCOLHER</button>
+        </div>
+      </div>
+      
+      <button id="btn-back-menu" class="back-btn">VOLTAR</button>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <div id="menu-screen" class="screen">
+    <div class="panel">
+      <h1>ECO DO VAZIO</h1>
+      <p class="sub">Sobreviva, evolua e derrote o Boss. PC: WASD para mover. Tiro e habilidades são automáticos! Clique direito: Pulso (defesa). Mobile: toque/arraste para mover.</p>
+
+      <!-- Seleção de Modo e Dificuldade -->
+      <div class="game-settings">
+        <div class="setting-group">
+          <h3>MODO DE JOGO</h3>
+          <div class="button-group">
+            <button class="mode-btn active" data-mode="10min">10 MINUTOS</button>
+            <button class="mode-btn" data-mode="infinito">INFINITO</button>
+            <button class="mode-btn" data-mode="5min">5 MINUTOS</button>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>DIFICULDADE</h3>
+          <div class="button-group">
+            <button class="difficulty-btn active" data-difficulty="facil">FÁCIL</button>
+            <button class="difficulty-btn" data-difficulty="medio">MÉDIO</button>
+            <button class="difficulty-btn" data-difficulty="dificil">DIFÍCIL</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="btn-play">JOGAR</button>
+        <button id="btn-how">COMO JOGAR</button>
+        <button id="btn-settings">CONFIGURAÇÕES</button>
+      </div>
+
+      <div id="menu-how" class="menu-section hidden">
+        <h2>Como jogar</h2>
+        <ul>
+          <li>Mate inimigos para ganhar Éter (XP) e subir de nível.</li>
+          <li>Ao upar, escolha 1 upgrade (stats ou habilidades).</li>
+          <li><b>Habilidades:</b> Granada, EMP, Laser (Automáticas).</li>
+          <li><b>Pulso:</b> clique direito (cooldown) — empurra e causa dano em área.</li>
+          <li>Boss aparece a cada 60s.</li>
+        </ul>
+      </div>
+
+      <div id="menu-settings" class="menu-section hidden">
+        <h2>Configurações</h2>
+        <div class="row">
+          <label><input type="checkbox" id="chk-autofire" checked> Auto-fire / Auto-aim</label>
+        </div>
+        <div class="row">
+          <label>Volume Geral</label>
+          <input id="vol-master" type="range" min="0" max="1" step="0.01" value="0.85" />
+        </div>
+        <div class="row">
+          <label>Volume Música</label>
+          <input id="vol-music" type="range" min="0" max="1" step="0.01" value="0.35" />
+        </div>
+        <div class="row">
+          <label>Volume SFX</label>
+          <input id="vol-sfx" type="range" min="0" max="1" step="0.01" value="0.9" />
+        </div>
+        <p class="tip">Dica: em celular, auto-fire e auto-mira já ficam ativados.</p>
+      </div>
+
+      <p class="foot">ESC pausa durante o jogo.</p>
+    </div>
+  </div>
+
+  <!-- PAUSE -->
+  <div id="pause-screen" class="screen hidden">
+    <div class="panel">
+      <h2>PAUSADO</h2>
+      <div class="buttons">
+        <button id="btn-resume">CONTINUAR</button>
+        <button id="btn-back-menu">MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI -->
+  <div id="ui-overlay">
+    <div id="level-text">NÍVEL 1</div>
+    <div class="stat-bar"><div id="xp-fill"></div></div>
+    <div class="hp-label">INTEGRIDADE DO TRAJE</div>
+    <div class="stat-bar"><div id="hp-fill"></div></div>
+    <div id="weapon-info" style="margin-top:10px; font-weight:bold; color:#fff; text-shadow:0 0 5px rgba(255,255,255,0.5);">
+      ARMA: <span id="weapon-name" style="color:#00ff1a">PLASMA</span>
+    </div>
+    <div id="mobile-hint" class="hint">Toque e arraste no lado esquerdo para mover. Auto-mira e tiro automático.</div>
+  </div>
+
+  <div id="timer">00:00</div>
+
+  <button id="btn-pause-mobile" class="pause-btn hidden">⏸</button>
+  <button id="btn-weapon-swap" class="weapon-btn hidden">TROCAR</button>
+
+  <!-- HUD upgrades -->
+  <div id="hud-upgrades" class="collapsed">
+    <div class="hud-title">UPGRADES</div>
+    <button id="hud-toggle" class="hud-toggle" aria-label="Mostrar/ocultar HUD">≡</button>
+    <div id="hud-content" class="hud-content"></div>
+  </div>
+
+  <!-- Upgrade Screen -->
+  <div id="upgrade-screen">
+    <div class="upgrade-panel">
+      <h2>ESCOLHA UM UPGRADE</h2>
+      <p class="upgrade-sub">Você subiu de nível! Selecione 1 melhoria para continuar.</p>
+      <div id="upgrade-cards" class="upgrade-cards"></div>
+      <p class="upgrade-foot">Dica: combine taxa de tiro + dano + magnetismo para farmar mais rápido.</p>
+    </div>
+  </div>
+
+  <!-- Death -->
+  <div id="death-screen">
+    <h1 style="font-size: 4rem; color: #ff416c;">SINAL PERDIDO</h1>
+    <p id="final-stats">Recursos Coletados: 0</p>
+    <button onclick="location.reload()">REENTRAR NA ÓRBITA</button>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
